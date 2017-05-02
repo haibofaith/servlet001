@@ -1,6 +1,3 @@
-# servlet001
-servlet最简单demo
-
 1.
 严重: Allocate exception for servlet MyServlet
 java.lang.ClassNotFoundException: com.demo
