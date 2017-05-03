@@ -25,8 +25,19 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.demo.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/register.html</url-pattern>
+  </servlet-mapping>
+  
+  
+  
   <context-param>
-  <param-name>servlet_name</param-name>
-  <param-value>servlet_value</param-value>
+    <param-name>servlet_name</param-name>
+    <param-value>servlet_value</param-value>
   </context-param>
 </web-app>
