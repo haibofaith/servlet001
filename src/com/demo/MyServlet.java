@@ -14,10 +14,16 @@ public class MyServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		super.doGet(req, resp);
-		//logic HttpServletRequest请求,HttpServletResponse 响应
+//		logic HttpServletRequest请求,HttpServletResponse 响应
+//		PrintWriter out = resp.getWriter();
+//		out.print("hello servlet!");
+//		out.close();
+//		
+//		String str = this.getServletContext().getInitParameter("servlet_name");
+//		System.out.println(str);
+//		resp.sendRedirect("http://www.baidu.com");
 		PrintWriter out = resp.getWriter();
 		out.print("hello servlet!");
-		out.close();
 	}
 	
 	@Override
