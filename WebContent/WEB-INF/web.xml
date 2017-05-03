@@ -31,9 +31,8 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/register.html</url-pattern>
+    <url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
-  
   
   
   <context-param>

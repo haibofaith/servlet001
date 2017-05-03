@@ -25,7 +25,7 @@ Server Tomcat v8.0 Server at localhost failed to start.
 4.servlet输出一个html页面(jsp)
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		out.print("<h1>hello servlet</h1>");
+		out.print("hello servlet");
 }
 
 5.获得servlet初始化参数

@@ -29,6 +29,12 @@ public class RegisterServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		System.out.println("username:"+username+" password:"+password);
+		String[] hobby = request.getParameterValues("hobby");
+		if(hobby!=null){
+		for (int i = 0; i < hobby.length; i++) {
+			System.out.println(hobby[i]);
+		}
+		}
 	}
 
 	/**
