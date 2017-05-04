@@ -33,8 +33,6 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
-  
-  
   <context-param>
     <param-name>servlet_name</param-name>
     <param-value>servlet_value</param-value>

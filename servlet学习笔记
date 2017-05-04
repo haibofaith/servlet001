@@ -2,6 +2,7 @@
 严重: Allocate exception for servlet MyServlet
 java.lang.ClassNotFoundException: com.demo
 
+解决方案1:
 原因：web.xml需要完整路径
 例如错误代码：
 <servlet>
@@ -9,6 +10,8 @@ java.lang.ClassNotFoundException: com.demo
     <servlet-class>com.demo</servlet-class>
 </servlet>
 我的路径为com.demo.MyServlet，而我只是写了包名。
+解决方案2:
+close当前project重新打开启动
 
 2.
 重启之后tomcat不能启动
@@ -47,3 +50,61 @@ request.getRequestDispatcher("hello.html").include(request, response);
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		System.out.println("username:"+username+" password:"+password);
+
+8.处理头信息：隐式信息
+
+9.Enumeration获得结果集，只有两个方法。hasMoreElements／nextElement
+通过它获取头信息：
+		Enumeration<String> enum1 = request.getHeaderNames();
+		while (enum1.hasMoreElements()) {
+			String string = (String) enum1.nextElement();
+			String value = request.getHeader(string);
+			System.out.println("name:"+string +"  value:"+value);
+		}
+头信息如下：
+name:host  value:localhost:8080
+name:connection  value:keep-alive
+name:upgrade-insecure-requests  value:1
+name:accept  value:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+name:user-agent  value:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/602.3.12 (KHTML, like Gecko) Safari/522.0
+name:accept-language  value:zh-cn
+name:cache-control  value:max-age=0
+name:accept-encoding  value:gzip, deflate
+
+10.响应头信息(显示图片,刷新页面时间)
+response.setContentType("image/jpeg");	
+		InputStream in = this.getClass().getClassLoader().getResourceAsStream("img002.jpg");
+		int len = in.available();
+		byte[] buffer = new byte[len];
+		in.read(buffer);
+		OutputStream out = response.getOutputStream();
+		out.write(buffer);
+		out.flush();
+		out.close();	
+
+response.setHeader("refresh", "1");
+		PrintWriter out = response.getWriter();
+		out.println(new Date().toString());		
+
+11.cookie保存在客户端的键值对
+添加cookie
+Cookie c = new Cookie("geek99", "www.geek99.com");
+		c.setMaxAge(60*60*24*7);
+		response.addCookie(c);
+使用cookie
+Cookie[] cs = request.getCookies();
+		for (int i = 0; i < cs.length; i++) {
+			System.out.println("key:"+cs[i].getName()+"value:"+cs[i].getValue());
+		}
+
+12.持久化
+cookie／session
+session用户当前状态，浏览器和服务器一对一
+1）设置session
+HttpSession session = request.getSession();
+session.setAttribute("session_name", "session_value");		
+2)获取session
+HttpSession session = request.getSession();
+String value = (String) session.getAttribute("session_name");
+System.out.println("name:"+value);
+关注区别：session与浏览器有关，浏览器关闭则清楚。
