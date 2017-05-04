@@ -33,6 +33,17 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
+  <filter>
+  	<filter-name>MyFlter</filter-name>
+  	<filter-class>com.filter.MyFilter</filter-class>
+  </filter>
+  <!-- urlpattern所有人都需要经过／* -->
+  <!-- /admin/* admin文件夹下的才需要过滤 -->
+  <filter-mapping>
+  	<filter-name>MyFlter</filter-name>
+  	<url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  
   <context-param>
     <param-name>servlet_name</param-name>
     <param-value>servlet_value</param-value>

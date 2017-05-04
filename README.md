@@ -156,4 +156,30 @@ requestValue:null
 
 16.Filter过滤 ，客户端和服务端请求资源之间，起到过滤作用
 session管理
+权限管理
+...
+
+17.myFilter实现Filter
+		//过滤传递
+		arg2.doFilter(arg0, arg1);
+web.xml配置如下：
+<filter>
+  	<filter-name>MyFlter</filter-name>
+  	<filter-class>com.filter.MyFilter</filter-class>
+</filter>
+  <!-- urlpattern所有人都需要经过 -->
+<filter-mapping>
+  	<filter-name>MyFlter</filter-name>
+  	<url-pattern>/*</url-pattern>
+</filter-mapping>
+结果：不管调用什么，例如jdbclogin.html也会调用fliter过滤器
+重新配置admin下面才会生效：
+<!-- /admin/* admin文件夹下的才需要过滤 -->
+<filter-mapping>
+  	<filter-name>MyFlter</filter-name>
+  	<url-pattern>/admin/*</url-pattern>
+</filter-mapping>
+例如：
+http://localhost:8080/Servers1/login.html不会执行过滤器
+http://localhost:8080/Servers1/admin/admin.html会执行过滤器
 		
