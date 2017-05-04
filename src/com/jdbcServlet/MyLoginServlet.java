@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MyLoginServlet
@@ -35,8 +36,9 @@ public class MyLoginServlet extends HttpServlet {
 		UserInfo u = userDao.login(username, password);
 		PrintWriter out = response.getWriter();
 		if (u!=null) {
-			
-			out.print(u.toString());
+			HttpSession session = request.getSession();
+			session.setAttribute("userSession", u);
+			request.getRequestDispatcher("welcome.jsp").forward(request, response);
 		}else{
 			out.print("username or password is incorrect!");
 		}
