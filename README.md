@@ -157,6 +157,7 @@ requestValue:null
 16.Filter过滤 ，客户端和服务端请求资源之间，起到过滤作用
 session管理
 权限管理
+日志管理
 ...
 
 17.myFilter实现Filter
@@ -182,4 +183,39 @@ web.xml配置如下：
 例如：
 http://localhost:8080/Servers1/login.html不会执行过滤器
 http://localhost:8080/Servers1/admin/admin.html会执行过滤器
+
+18.listener
+监听web工程状态的改变
+1）整个工程状态的改变
+servletContextListener ServletContextAttributeListener
+2）session属性的变化
+httpSessionListener httpSessionAttributeListener
+3）request属性的变化
+servletRequestListener servletRequestAttributeListener
+例如：（创建销毁）
+MyListener implements servletConTextListener
+web.xml:
+<listener>
+  	<listener-class>com.listener.MyListener</listener-class>
+</listener>
+前置性的工作可置于此处contextInitialized
+属性添加修改删除例如：（增删改）
+MyServletContextAttributeListener implements ServletContextAttributeListener
+测试如下：
+		System.out.println("-----add-----");
+		stx.setAttribute("ctx_name", "ctx_value");
+		System.out.println("-----replace-----");
+		stx.setAttribute("ctx_name", "ctx_value2");
+		System.out.println("-----remove------");
+		stx.removeAttribute("ctx_name");	
+同理httpSessionListener,servletRequestListener等四个。
+主要用途：
+在线用户的统计：servletcontext全局设置属性，实现session，当用户上线，总体加1，session消失，则减1。本例中该代码写的有问题。再看。
+
+19.servlet资源的访问
+b/s客户端／服务器   b/a/s 客户端／应用服务器／db数据服务器 三层结构
+
+	
+
+
 		

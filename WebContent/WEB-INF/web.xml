@@ -34,15 +34,19 @@
     <url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
   <filter>
-  	<filter-name>MyFlter</filter-name>
-  	<filter-class>com.filter.MyFilter</filter-class>
+    <filter-name>MyFlter</filter-name>
+    <filter-class>com.filter.MyFilter</filter-class>
   </filter>
-  <!-- urlpattern所有人都需要经过／* -->
-  <!-- /admin/* admin文件夹下的才需要过滤 -->
   <filter-mapping>
-  	<filter-name>MyFlter</filter-name>
-  	<url-pattern>/admin/*</url-pattern>
+    <filter-name>MyFlter</filter-name>
+    <url-pattern>/admin/*</url-pattern>
   </filter-mapping>
+  <listener>
+    <listener-class>com.listener.MyListener</listener-class>
+  </listener>
+  <listener>
+  	<listener-class>com.listener.MyhttpSessionListener</listener-class>
+  </listener>
   
   <context-param>
     <param-name>servlet_name</param-name>
